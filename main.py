@@ -36,7 +36,7 @@ KEYWORDS = [
     "Sustainable Green Chemistry",        # 친환경 지속가능 화학
     "AI-driven Drug Discovery",           # AI 신약 개발
     "Solid-state Battery Materials",      # 전고체 등 차세대 배터리 소재
-    "Semiconductor Specialty Chemicals",  # 반도체 특수 화학 소재
+    "Semiconductor Chemicals",  # 반도체 특수 화학 소재
     "CCUS Technology",                    # 탄소 포집/활용/저장
 ]
 
