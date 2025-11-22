@@ -1,0 +1,39 @@
+name: Bi-Weekly Blockchain News (Mon, Thu)
+
+on:
+  schedule:
+    # Cron 표현식 설명 (UTC 기준):
+    # '0 23 * * 0,3' 해석:
+    # - 분: 0
+    # - 시: 23 (오후 11시 UTC) -> 한국 시간(KST)으로 다음 날 오전 8시
+    # - 요일: 0(일요일), 3(수요일)
+    # 결론: 일요일 밤 23시(한국 월요일 아침 8시), 수요일 밤 23시(한국 목요일 아침 8시)에 실행
+    - cron: '0 23 * * 0,3'
+  
+  workflow_dispatch: # 수동 실행 버튼 유지
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run Script
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        EMAIL_TO: ${{ secrets.EMAIL_TO }}
+      run: python main.py
